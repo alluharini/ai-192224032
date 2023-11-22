@@ -1,0 +1,12 @@
+% Database of birds and their ability to fly
+bird(canary, can_fly).
+bird(penguin, cannot_fly).
+bird(sparrow, can_fly).
+bird(ostrich, cannot_fly).
+bird(hawk, can_fly).
+
+% Example queries:
+% Query: bird(canary, can_fly).
+% Result: true.
+
+

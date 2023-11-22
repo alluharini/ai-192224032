@@ -1,0 +1,26 @@
+diabetes_friendly(diet_vegetables).
+diabetes_friendly(diet_fruits).
+diabetes_friendly(diet_whole_grains).
+diabetes_friendly(avoid_sugary_snacks).
+diabetes_friendly(avoid_high_carb_foods).
+
+% Foods for a heart-healthy diet
+heart_healthy(diet_fruits).
+heart_healthy(diet_vegetables).
+heart_healthy(diet_whole_grains).
+heart_healthy(diet_lean_proteins).
+heart_healthy(avoid_saturated_fats).
+heart_healthy(avoid_high_sodium_foods).
+
+suggest_diet(Condition, Diet) :-
+    Condition == diabetes,
+    diabetes_friendly(Diet).
+
+suggest_diet(Condition, Diet) :-
+    Condition == heart_disease,
+    heart_healthy(Diet).
+
+% Example queries:
+% Query: suggest_diet(diabetes, X).
+% Result: X = diet_vegetables, diet_fruits, diet_whole_grains, avoid_sugary_snacks, avoid_high_carb_foods.
+

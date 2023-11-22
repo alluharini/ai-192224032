@@ -1,0 +1,19 @@
+% Basic medical knowledge base
+symptom(john, fever).
+symptom(john, cough).
+symptom(jane, headache).
+symptom(jane, fatigue).
+
+disease(fever, flu).
+disease(cough, cold).
+disease(headache, stress).
+disease(fatigue, anemia).
+
+% Rule for diagnosing diseases based on symptoms
+diagnose(Person, Disease) :-
+    symptom(Person, Symptom),
+    disease(Symptom, Disease).
+
+% Example queries:
+% Query: diagnose(john, Disease).
+% Result: Disease = flu.
