@@ -1,14 +1,8 @@
-
-individual(john, date(1990, 5, 15)).
-individual(susan, date(1985, 8, 22)).
-individual(mike, date(1995, 3, 10)).
-individual(emma, date(1980, 11, 5)).
-
-dob(Name, DOB) :-
-    individual(Name, DOB).
+born(harini, 09-06-2005).
+born(tejaswini, 20-12-2003).
+born(ram, 02,10,2003).
+born(aman, 26,08,2001).
 
 % Example queries:
-% Query: dob(john, X).
-% Result: X = date(1990, 5, 15).
-
-
+% Query: born(harini, X).
+% X = 9-6-2005.
