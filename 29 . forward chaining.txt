@@ -24,4 +24,9 @@ forward_chaining :-
 % 2. Check if Tweety can fly (inferred by forward chaining)
 %    Query: can_fly(tweety).
 
-
+% method-2
+% rainy(chennai).
+% rainy(coimbatore).
+% rainy(ooty).
+% cold(ooty).
+% snowy(X):-rainy(X),cold(X).
