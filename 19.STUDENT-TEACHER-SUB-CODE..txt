@@ -1,30 +1,13 @@
-% Facts
-teacher(john, math).
-teacher(emma, physics).
-teacher(michael, computer_science).
+takes(joshi,csa01).
+takes(siree,csa02).
+takes(ram,csa02).
+takes(sam,csa01).
+classmates(X,Y):-
+    takes(X,Z),takes(Y,Z).
 
-subject(math, calculus).
-subject(math, algebra).
-subject(physics, classical_mechanics).
-subject(physics, electromagnetism).
-subject(computer_science, programming).
-subject(computer_science, databases).
+% queries:
+% classmates(joshi,sam),takes(joshi,Z),takes(sam,Z).
+% Z = csa01.
 
-student(alice, [calculus, classical_mechanics, programming]).
-student(bob, [algebra, electromagnetism, databases]).
-
-% Rules
-teaches_subject(Teacher, Subject) :-
-    teacher(Teacher, SubCode),
-    subject(SubCode, Subject).
-
-enrolled_in(Student, Subject) :-
-    student(Student, Subjects),
-    member(Subject, Subjects).
-
-% Example queries
-% 1. Who teaches Programming?
-%    Query: teaches_subject(Teacher, programming).
-%    Answer: Teacher = michael.
-
-
+% takes(joshi, X).
+% X = csa01.
