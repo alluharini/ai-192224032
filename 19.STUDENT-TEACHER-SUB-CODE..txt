@@ -1,0 +1,30 @@
+% Facts
+teacher(john, math).
+teacher(emma, physics).
+teacher(michael, computer_science).
+
+subject(math, calculus).
+subject(math, algebra).
+subject(physics, classical_mechanics).
+subject(physics, electromagnetism).
+subject(computer_science, programming).
+subject(computer_science, databases).
+
+student(alice, [calculus, classical_mechanics, programming]).
+student(bob, [algebra, electromagnetism, databases]).
+
+% Rules
+teaches_subject(Teacher, Subject) :-
+    teacher(Teacher, SubCode),
+    subject(SubCode, Subject).
+
+enrolled_in(Student, Subject) :-
+    student(Student, Subjects),
+    member(Subject, Subjects).
+
+% Example queries
+% 1. Who teaches Programming?
+%    Query: teaches_subject(Teacher, programming).
+%    Answer: Teacher = michael.
+
+
