@@ -1,14 +1,16 @@
-% Predicate to solve Towers of Hanoi
-hanoi(1, A, B, _) :-
-    write('Move disk 1 from '), write(A), write(' to '), writeln(B).
+move(1,X,Y,_) :-
+         write('Move top disk from '),
+         write(X),
+         write(' to '),
+         write(Y),
+nl.
+     move(N,X,Y,Z) :-
+         N>1,
+         M is N-1,
+         move(M,X,Z,Y),
+         move(1,X,Y,_),
+         move(M,Z,Y,X).
 
-hanoi(N, A, B, C) :-
-    N > 1,
-    M is N - 1,
-    hanoi(M, A, C, B),
-    write('Move disk '), write(N), write(' from '), write(A), write(' to '), writeln(B),
-    hanoi(M, C, B, A).
-
-% Example query:
-% Query: hanoi(3, 'A', 'B', 'C').
-% Result: The program will output the sequence of moves to solve the Towers of Hanoi for 3 disks.
+% queries:
+% move(1,X,Y,Z).
+% Move top disk from _17746 to _17748
