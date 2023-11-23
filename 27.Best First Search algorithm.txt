@@ -1,25 +1,18 @@
-% Example graph represented by facts
-edge(a, b, 4).
-edge(a, c, 2).
-edge(b, d, 5).
-edge(c, e, 7).
-edge(d, e, 3).
+%for pentagon
+edge(a, e).
+edge(a, f).
+edge(b, e).
+edge(b, h).
+edge(c, g).
+edge(c, f).
+edge(d, h).
+edge(d, g).
+path(c,d):-
+    edge(c,Y) , edge(d,Y).
 
-% Best-First Search algorithm
-best_first_search(Start, Goal, Path) :-
-    bfs([Start], Goal, Path).
+%queries:
+% path(c,d) , edge(c,Y) , edge(d,Y).
+% Y = g .
 
-% Helper predicate for Best-First Search
-bfs([Goal | _], Goal, [Goal]) :- !.
-
-bfs([Current | Rest], Goal, [Current | Path]) :-
-    findall(
-        Next,
-        (edge(Current, Next, _), \+ member(Next, Rest)),
-        Children
-    ),
-    append(Rest, Children, NewQueue),
-    bfs(NewQueue, Goal, Path).
-
-% Example usage:
-% best_first_search(a, e, Path).
+% path(c,d).
+% true .
