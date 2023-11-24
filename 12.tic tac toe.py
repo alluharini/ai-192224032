@@ -1,55 +1,58 @@
-def print_board(board):
-    for row in board:
-        print(" | ".join(row))
-        print("-" * 9)
+print("Yosha")
+def sum(a,b,c):
+    return a+b+c
+def printBoard(xState , zState):
 
-def check_winner(board):
-    # Check rows
-    for row in board:
-        if all(cell == row[0] and cell != ' ' for cell in row):
-            return row[0]
+    zero =  'X' if xState[0] else('@' if zState[0] else 0 )
+    one =  'X' if xState[1] else('@' if zState[1] else 1 )
+    two =  'X' if xState[2] else('@' if zState[2] else 2 )
+    three =  'X' if xState[3] else('@' if zState[3] else 3 )
+    four =  'X' if xState[4] else('@' if zState[4] else 4 )
+    five =  'X' if xState[5] else('@' if zState[5] else 5 )
+    six =  'X' if xState[6] else('@' if zState[6] else 6 )
+    seven =  'X' if xState[7] else('@' if zState[7] else 7 )
+    eight =  'X' if xState[8] else('@' if zState[8] else 8 )
 
-    # Check columns
-    for col in range(3):
-        if all(board[row][col] == board[0][col] and board[row][col] != ' ' for row in range(3)):
-            return board[0][col]
+    print(f" {zero} | {one} | {two} ")
+    print(f"---|---|---")
+    print(f" {three} | {four} | {five} ")
+    print(f"---|---|---")
+    print(f" {six} | {seven} | {eight} ")
 
-    # Check diagonals
-    if board[0][0] == board[1][1] == board[2][2] and board[0][0] != ' ':
-        return board[0][0]
-    if board[0][2] == board[1][1] == board[2][0] and board[0][2] != ' ':
-        return board[0][2]
+def checkWin(xState,zState) : 
+    wins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
+    for win in wins :
+        if(sum(xState[win[0]], xState[win[1]], xState[win[2]]) == 3) :
+            print("X won the game")
+            return 1
+        if(sum(zState[win[0]], zState[win[1]], zState[win[2]]) == 3) :
+            print("O won the game.")
+            return 0
+    return -1
 
-    return None
+if __name__ == "__main__" : 
 
-def is_board_full(board):
-    return all(cell != ' ' for row in board for cell in row)
+    total_turns = 9
 
-def tic_tac_toe():
-    board = [[' ' for _ in range(3)] for _ in range(3)]
-    current_player = 'X'
+    xState = [0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+    zState = [0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+    turn = 1 # 1 for X and 0 for O
+    print("Welcome to TIC-TAC-TOE")
+    while(True) : 
+        printBoard(xState, zState)
+        if(turn == 1):
+            print("X's Chance")
+            value = int(input("Please enter a value : "))
+            xState[value] = 1
+        else :
+            print("O's Chance")
+            value = int(input("Please enter a value : "))
+            zState[value] = 1
 
-    while True:
-        print_board(board)
-        row = int(input(f"Player {current_player}, enter the row (0-2): "))
-        col = int(input(f"Player {current_player}, enter the column (0-2): "))
+        total_turns = total_turns - 1
 
-        if board[row][col] == ' ':
-            board[row][col] = current_player
-            winner = check_winner(board)
-
-            if winner:
-                print_board(board)
-                print(f"Player {winner} wins!")
-                break
-            elif is_board_full(board):
-                print_board(board)
-                print("It's a draw!")
-                break
-
-            current_player = 'O' if current_player == 'X' else 'X'
-        else:
-            print("Invalid move. Try again.")
-
-if __name__ == "__main__":
-    tic_tac_toe()
+        if(checkWin(xState, zState) != -1 or total_turns == 0 ):
+            print("GAME OVER")
+            printBoard(xState, zState)
+            break
+        turn = 1 -  turn
